@@ -10,7 +10,6 @@
   <modules>
     <module>super-heroes/ui-super-heroes</module>
     <module>super-heroes/load-super-heroes</module>
-    <module>attendance-app</module>
   </modules>
   <properties>
     <assembly-plugin.version>3.3.0</assembly-plugin.version>
