@@ -1,0 +1,5 @@
+# Project exclude paths
+/super-heroes/extension-version/deployment/target/
+/super-heroes/extension-version/runtime/target/
+/super-heroes/load-super-heroes/target/
+/super-heroes/ui-super-heroes/target/

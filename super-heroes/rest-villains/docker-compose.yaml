@@ -1,0 +1,35 @@
+version: "3"
+services:
+    rest-villains:
+        image: quarkus/rest-villains-jvm
+        container_name: "rest-villains"
+        mem_limit: 128m
+        environment:
+            - QUARKUS_DATASOURCE_URL=jdbc:postgresql://quarkus-db:5432/postgres
+        ports:
+            - "8084:8084"  # the HTTP endpoint
+        depends_on:
+            quarkus-db:
+                condition: service_healthy
+        networks:
+            - quarkus
+
+    quarkus-db:
+        image: "postgres:13.4"
+        mem_limit: 128m
+        environment:
+            - POSTGRES_USER=quarkus
+            - POSTGRES_PASSWORD=quarkus
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U quarkus"]
+            interval: 5s
+            timeout: 5s
+            retries: 6
+        ports:
+            - "5439:5432"
+        networks:
+            - quarkus
+
+networks:
+    quarkus:
+        driver: bridge
